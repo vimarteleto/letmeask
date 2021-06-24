@@ -70,7 +70,7 @@ export function AuthContextProvider(props: AuthContextProviderProps) {
     //TODO
     // async function signOut() {
     //     await auth.signOut()
-    //     setUser(undefined)
+    //     setUser({} as User)
     //     history.push('/')
     // }
 
