@@ -1,6 +1,5 @@
 import {createContext, ReactNode, useEffect, useState} from "react";
 import {auth, firebase} from "../services/firebase";
-import {useHistory} from "react-router-dom";
 
 type User = {
     id: string,
@@ -22,7 +21,6 @@ export const AuthContext = createContext({} as AuthContextType)
 export function AuthContextProvider(props: AuthContextProviderProps) {
 
     const [user, setUser] = useState<User>()
-    const history = useHistory()
 
     useEffect(() => {
         const unsubscribe = auth.onAuthStateChanged(user => {
@@ -64,7 +62,6 @@ export function AuthContextProvider(props: AuthContextProviderProps) {
                 avatar: photoURL
             })
         }
-
     }
 
     //TODO

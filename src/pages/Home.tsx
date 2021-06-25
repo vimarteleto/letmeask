@@ -1,13 +1,13 @@
 import {FormEvent, useState} from "react";
 import {useHistory} from 'react-router-dom'
 
-import illustrationImg from '../assets/images/illustration.svg'
-import logoImg from '../assets/images/logo.svg'
-import googleIconImg from '../assets/images/google-icon.svg'
-
 import {Button} from "../components/Button";
 import {useAuth} from "../hooks/useAuth";
 import {database} from "../services/firebase";
+
+import illustrationImg from '../assets/images/illustration.svg'
+import logoImg from '../assets/images/logo.svg'
+import googleIconImg from '../assets/images/google-icon.svg'
 
 import '../styles/auth.scss'
 
@@ -19,7 +19,7 @@ export function Home() {
 
     async function handleCreateRoom() {
         if (!user) {
-            await signInWithGoogle
+            await signInWithGoogle()
         }
         history.push('/rooms/new')
     }
