@@ -13,7 +13,7 @@ import '../styles/auth.scss'
 
 export function Home() {
     const history = useHistory()
-    const {user, signInWithGoogle} = useAuth()
+    const {user, signInWithGoogle, signOutWithGoogle} = useAuth()
     const [roomCode, setRoomCode] = useState('')
 
 
@@ -22,6 +22,11 @@ export function Home() {
             await signInWithGoogle()
         }
         history.push('/rooms/new')
+    }
+
+     async function handleLogOut() {
+         await signOutWithGoogle()
+         history.push('/')
     }
 
     async function handleJoinRoom(event: FormEvent) {
@@ -42,7 +47,7 @@ export function Home() {
             return
         }
 
-        history.push(`/rooms/${roomCode}`)
+        history.push(`/admin/rooms/${roomCode}`)
 
     }
 
@@ -59,10 +64,23 @@ export function Home() {
                     <div className="hello">
                         {user && <p>Olá, {user?.name}!</p>}
                     </div>
-                    <button className="create-room" onClick={handleCreateRoom}>
-                        <img src={googleIconImg} alt="Logo do Google"/>
-                        Crie sua sala com o Google
-                    </button>
+                    {user ?
+                        <div className="login-control">
+                            <button className="home-button logged" onClick={handleCreateRoom}>
+                                <img src={googleIconImg} alt="Logo do Google"/>
+                                Crie sua sala
+                            </button>
+                            <button className="home-button logout" onClick={handleLogOut}>
+                                Sair
+                            </button>
+                        </div>
+                        :
+                        <button className="home-button" onClick={handleCreateRoom}>
+                            <img src={googleIconImg} alt="Logo do Google"/>
+                            Crie sua sala
+                        </button>
+
+                    }
                     <div className="separator">ou entre em uma sala</div>
                     <form onSubmit={handleJoinRoom}>
                         <input

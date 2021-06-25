@@ -1,4 +1,4 @@
-import {useHistory, useParams} from 'react-router-dom'
+import {Link, useHistory, useParams} from 'react-router-dom'
 import {Button} from "../components/Button";
 import {RoomCode} from "../components/RoomCode";
 import {Question} from '../components/Question';
@@ -11,7 +11,6 @@ import deleteImg from '../assets/images/delete.svg'
 import checkImg from '../assets/images/check.svg'
 import answerImg from '../assets/images/answer.svg'
 
-// import {useAuth} from "../hooks/useAuth";
 
 import '../styles/room.scss'
 import {database} from "../services/firebase";
@@ -22,7 +21,6 @@ type RoomParams = {
 }
 
 export function AdminRoom() {
-    // const { user } = useAuth()
     const history = useHistory()
     const params = useParams<RoomParams>()
     const roomId = params.id
@@ -58,7 +56,9 @@ export function AdminRoom() {
         <div id="page-room">
             <header>
                 <div className="content">
-                    <img src={logoImg} alt="Letmeask"/>
+                    <Link to="/">
+                        <img src={logoImg} alt="Letmeask"/>
+                    </Link>
                     <div>
                         <RoomCode code={roomId}/>
                         <Button isOutlined onClick={handleEndRoom}>Encerrar sala</Button>

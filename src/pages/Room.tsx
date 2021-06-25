@@ -1,13 +1,14 @@
 import logoImg from '../assets/images/logo.svg'
 
-import {useParams} from 'react-router-dom'
+import  {Link} from "react-router-dom"
 import {Button} from "../components/Button";
 import {RoomCode} from "../components/RoomCode";
 import {Question} from '../components/Question';
-import {useRoom} from "../hooks/useRoom";
-import {database} from "../services/firebase";
-import {useAuth} from "../hooks/useAuth";
 import {FormEvent, useState} from "react";
+import {useParams} from 'react-router-dom'
+import {useRoom} from "../hooks/useRoom";
+import {useAuth} from "../hooks/useAuth";
+import {database} from "../services/firebase";
 
 import '../styles/room.scss'
 
@@ -15,12 +16,17 @@ type RoomParams = {
     id: string
 }
 
+
 export function Room() {
-    const { user } = useAuth()
+    const { user, signInWithGoogle } = useAuth()
     const [newQuestion, setNewQuestion] = useState('')
     const params = useParams<RoomParams>()
     const roomId = params.id
     const { questions, title } = useRoom(roomId)
+
+    async function logInWithGoogle() {
+        await signInWithGoogle()
+    }
 
 
     async function handleSendQuestion(event: FormEvent) {
@@ -61,7 +67,9 @@ export function Room() {
         <div id="page-room">
             <header>
                 <div className="content">
-                    <img src={logoImg} alt="Letmeask"/>
+                    <Link to="/">
+                        <img src={logoImg} alt="Letmeask"/>
+                    </Link>
                     <RoomCode code={roomId}/>
                 </div>
             </header>
@@ -83,7 +91,9 @@ export function Room() {
                                 <span>{user.name}</span>
                             </div>
                         ) : (
-                            <span>Para enviar uma pergunta, <button>faça seu login</button>.</span>
+                            <span>Para enviar uma pergunta,&nbsp;
+                                <button onClick={logInWithGoogle}>faça seu login</button>.
+                            </span>
                         ) }
                         <Button type="submit" disabled={!user}>Enviar pergunta</Button>
                     </div>
