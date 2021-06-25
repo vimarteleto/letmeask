@@ -47,7 +47,7 @@ export function Home() {
             return
         }
 
-        history.push(`/admin/rooms/${roomCode}`)
+        history.push(`/rooms/${roomCode}`)
 
     }
 
