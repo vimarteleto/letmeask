@@ -28,6 +28,8 @@
       margin-top: 16px;
       color: #f8f8f8;
     }
+
+
   }
 
   main {
@@ -50,6 +52,10 @@
 
     > img {
       align-self: center;
+    }
+
+    .hello {
+      height: 48px;
     }
 
     h2 {
@@ -87,7 +93,7 @@
     }
 
     .create-room {
-      margin-top: 64px;
+      margin-top: 48px;
       height: 50px;
       border-radius: 8px;
       font-weight: 500;

@@ -55,6 +55,7 @@
       margin-top: 32px;
     }
 
+
     form {
       textarea {
         width: 100%;
@@ -112,3 +113,66 @@
     }
   }
 }
+
+#delete-modal {
+  width: 300px;
+  height: 250px;
+  display: flex;
+  flex-direction: column;
+  margin: auto;
+  gap: 30px;
+
+  > img {
+    height: 30%;
+    margin: auto;
+  }
+
+  > div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+
+  .modal-buttons {
+    margin: auto;
+    gap: 10px;
+
+    .delete-button {
+      height: 40px;
+      width: 100px;
+      border-radius: 8px;
+      font-weight: 500;
+      background: #835afd;
+      color: #FFF;
+      padding: 0 32px;
+      border: 0;
+
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      cursor: pointer;
+      transition: filter 0.2s;
+
+      &.outlined {
+        background: #FFF;
+        border: 1px solid #835AFD;
+        color: #835AFD;
+      }
+    }
+  }
+}
+
+.like-count-container {
+  display: flex;
+  gap: 8px;
+
+  .like-count {
+    color: #737380;
+    margin: auto;
+  }
+
+}
+
+
