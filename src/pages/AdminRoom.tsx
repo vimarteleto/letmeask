@@ -33,7 +33,7 @@ export function AdminRoom() {
         history.push('/')
     }
 
-    // TODO modal de confirmação
+
     async function handleDeleteQuestion(questionId: string) {
         if (window.confirm('Tem certeza que deseja excluir essa pergunta?')) {
             await database.ref(`rooms/${roomId}/questions/${questionId}`).remove()
